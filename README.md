@@ -14,7 +14,7 @@ Mobile not supported!
 
 ## Screenshot
 
-<img src = "http://10.0.61.204/horsabi/qs-side-menu/raw/master/asset/demo/cast2.gif" />
+<img src = "https://github.com/LorisLombardo87/qs-side-menu/raw/master/asset/demo/cast2.gif" />
 
 
 ## Installation
