@@ -1,0 +1,9 @@
+{
+	"name" : "QS Side Menu",
+	"description" : "a filters menu",
+	"icon" : "",
+	"type" : "visualization",
+	"version": "@@version",
+	"preview" : "qssidemenu.png",
+	"author": "Loris Lombardo"
+}

@@ -1,0 +1,16 @@
+<div qv-extension class="dptDirective bootstrap_inside" id = "container-{{layout.qInfo.qId}}">
+	<div class = "row" >
+		<div class = "col-md-12 visible-md-inline-block visible-lg-inline-block" >
+			<button class = "btn btn-block" ng-class = "{'btn-success':sideBarOpen,'btn-default':!sideBarOpen}" ng-click = "toggleMenu()">{{layout.props.btnLabel}}</button>
+
+			<div qv-Slide-Panel = "sideBarOpen" qs-side-filters = "filters" qlik-app= "qlikApp" qs-side-name = "layout.props.btnLabel"></div>
+		</div>
+
+		<div class = "col-md-12 visible-xs-inline-block visible-sm-inline-block" >
+			<button class = "btn btn-block btn-default" disabled >{{layout.props.btnLabel}}</button>
+		</div>
+
+	</div>
+
+</div>
+
