@@ -19,7 +19,7 @@ Mobile not supported!
 
 ## Installation
 
-1. Download the latest version from [here](http://10.0.61.204/horsabi/qs-side-menu/raw/master/build/qssidemenu_dev.zip) 
+1. Download the latest version from [here](https://github.com/LorisLombardo87/qs-side-menu/raw/master/build/qssidemenu_latest.zip) 
 2. Qlik Sense Desktop
 	* To install, copy all files in the .zip file to folder "C:\Users\[%Username%]\Documents\Qlik\Sense\Extensions\QSSideMenu"
 3. Qlik Sense Server
@@ -28,10 +28,10 @@ Mobile not supported!
 ## Configuration
 
 1. Add a filter panel to the master item, set the name and the tag for the item.
-<img src = "http://10.0.61.204/horsabi/qs-side-menu/raw/master/asset/demo/cast3.gif">
+<img src = "https://github.com/LorisLombardo87/qs-side-menu/raw/master/asset/demo/cast3.gif">
 
 2. define filter groups in extension's property panel.
-<img src = "http://10.0.61.204/horsabi/qs-side-menu/raw/master/asset/demo/cast4.gif">
+<img src = "https://github.com/LorisLombardo87/qs-side-menu/raw/master/asset/demo/cast4.gif">
 
 Each group as a title and a list of associated master items.
 
