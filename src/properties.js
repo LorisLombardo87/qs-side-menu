@@ -20,7 +20,31 @@ define( [], function () {
 		show: true,
 		defaultValue:'QS Side Menu'
 	};
+	
+	var btnColour = {
+		ref: "props.btnColour",
+		label: "Button Colour",
+		type: "string",
+		show: true,
+		defaultValue:'#F5F6F6'
+	};
 
+	var sideMenuColour = {
+		ref: "props.sideMenuColour",
+		label: "Side Menu Colour",
+		type: "string",
+		show: true,
+		defaultValue:'#9BB3D7'
+	};	
+	
+	var groupHeaderColour = {
+		ref: "props.groupHeaderColour",
+		label: "Group Header Colour",
+		type: "string",
+		show: true,
+		defaultValue:'#9BB3D7'
+	};	
+	
 	var group1Tag = {
 		ref: "props.groups.group1.tag",
 		label: "Associated Tag",
@@ -91,10 +115,13 @@ define( [], function () {
 		items: {
 			settings: {
 				type: "items",
-				label: "QS Side Menu",
+				label: "Side Menu Settings",
 				items: {
 					loadByTag: loadByTag,
-					btnLabel: btnLabel
+					btnLabel: btnLabel,
+					btnColour: btnColour,
+					sideMenuColour: sideMenuColour,
+					groupHeaderColour: groupHeaderColour
 				}
 			},
 
