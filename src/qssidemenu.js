@@ -1,7 +1,6 @@
 define([
         'js/qlik',
         'jquery',
-        /*'underscore',*/
         './properties',
         './initialproperties',
         './lib/js/extensionUtils',
@@ -10,13 +9,11 @@ define([
         'text!./lib/css/scoped-bootstrap.css',
         './lib/partials/qvSlidePanel'
 ],
-function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemplate, bootstrapCss) {
+function (qlik, $, props, initProps, extensionUtils, cssContent, htmlTemplate, bootstrapCss) {
     'use strict';
 
     extensionUtils.addStyleToHeader(cssContent);
     extensionUtils.addStyleToHeader(bootstrapCss);
-
-    console.log('Initializing - remove me');
 
     return {
 
@@ -26,30 +23,19 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
 
         snapshot: { canTakeSnapshot: true },
 
-        resize : function( /*$element, layout*/ ) {
-            //do nothing
-        },
-
-        //clearSelectedValues : function($element) {
-        //
-        //},
-
-
-        // Angular Support (uncomment to use)
         template: htmlTemplate,
 
         // Angular Controller
         controller: ['$scope', function ($scope) {
+		
             $scope.sideBarOpen= false;
             $scope.filters = [];
 
             $scope.qlikApp = qlik.currApp();
             $scope.groups = [];
-           
-            
-
-            $scope.toggleMenu = function(){
-                $scope.sideBarOpen= !$scope.sideBarOpen;
+			
+			$scope.openMenu = function(){
+                $( ".qs-side-bar" ).addClass( "open" );
             };
 
             function setUpView(){
@@ -64,7 +50,6 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                 }
 
                 $scope.qlikApp.getList('masterobject').then(function(model) {
-                    //console.log(model);
                     if($scope.groups.length==0){
                         var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                             if (currentMO.qData.visualization=="filterpane"){
@@ -74,7 +59,8 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                             else{
                                 return filtersTmp;
                             }
-                        },[]);
+                        },[])
+						;
 
                         $scope.filters = [
                         {
@@ -95,7 +81,6 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                                         return filtersTmp;
                                     }
                                 },[]);
-
                                 $scope.filters.push(
                                 {
                                     'heading':group.label,
@@ -104,37 +89,17 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                                 );
                         });
                     }                    
-                    console.log($scope.filters);
                 });
             }
 
             $scope.$watch('layout.props', function(newValue, oldValue, scope) {
-                //console.log(newValue);
                 setUpView();
             }, true);
           
 		
         }],
 
-
-        paint: function ( $element /*, layout*/ ) {
-
-            
-            
-            /*console.log('Basic Objects');
-            console.info('$element:');
-            console.log($element);
-            console.info('layout:');
-            console.log(layout);
-            console.groupEnd();
-            */
-
-            //$element.empty();
-            // var $helloWorld = $(document.createElement('div'));
-            // $helloWorld.addClass('hello-world');
-            // $helloWorld.html('Hello World from the extension "QS Side Menu"');
-            // $element.append($helloWorld);
-
+        paint: function ( $element ) {
         }
     };
 
