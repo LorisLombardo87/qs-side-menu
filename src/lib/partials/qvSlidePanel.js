@@ -72,7 +72,7 @@ define([
         scope.$watch('qsSideFilters', function(newValue, oldValue, scope){ 
           jquery( ".filter-container" ).empty();          
           var groups = newValue.map(function(group){
-            var filterpane =  group.filterpane.map(function(target){return '<div class = \"col-md-12 filter\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: 34px; width: 100%;background-color: white;\"></div></div>'; });
+            var filterpane =  group.filterpane.map(function(target){return '<div class = \"col-md-12 filter\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: '+(34*target.childFilters)+'px; width: 100%;background-color: white;\"></div></div>'; });
             return '<div class = \"col-md-12 \"><div class = "heading">'+group.heading+'</div></div>'+filterpane.join('');
           });
           jquery( ".filter-container" ).append(groups)

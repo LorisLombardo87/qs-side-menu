@@ -1,5 +1,5 @@
 define([
-        'js/qlik',
+        'qlik',
         'jquery',
         /*'underscore',*/
         './properties',
@@ -68,7 +68,14 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                     if($scope.groups.length==0){
                         var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                             if (currentMO.qData.visualization=="filterpane"){
+                                currentMO.childFilters=1;
+
                                 filtersTmp.push(currentMO);
+                                $scope.qlikApp.getObjectProperties(currentMO.qInfo.qId).then(function(model){
+                                    console.log(model.layout.qChildList.qItems.length);
+                                    currentMO.childFilters=model.layout.qChildList.qItems.length;
+                                });
+                                
                                 return filtersTmp;
                             }
                             else{
