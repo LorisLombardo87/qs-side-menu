@@ -64,7 +64,8 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                 }
 
                 $scope.qlikApp.getList('masterobject').then(function(model) {
-                    //console.log(model);
+                    console.log(model);
+                    console.log( $scope.groups);
                     if($scope.groups.length==0){
                         var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                             if (currentMO.qData.visualization=="filterpane"){
@@ -93,8 +94,16 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                     }else{
                         $scope.filters = [];
                         $scope.groups.forEach(function(group) {
+
                                 var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                                     if (currentMO.qData.visualization=="filterpane" && currentMO.qMeta.tags.indexOf(group.tag)>-1){
+                                        
+                                        currentMO.childFilters=1;
+                                        $scope.qlikApp.getObjectProperties(currentMO.qInfo.qId).then(function(model){
+                                            console.log(model.layout.qChildList.qItems.length);
+                                            currentMO.childFilters=model.layout.qChildList.qItems.length;
+                                        });
+
                                         filtersTmp.push(currentMO);
                                         return filtersTmp;
                                     }
@@ -116,7 +125,6 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
             }
 
             $scope.$watch('layout.props', function(newValue, oldValue, scope) {
-                //console.log(newValue);
                 setUpView();
             }, true);
           

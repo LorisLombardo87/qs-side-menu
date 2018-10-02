@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------
 general:
   # Path to the extension directory in Qlik Sense Desktop
-  LocalExtensionPath:   "\\lund\\c$\\ProgramData\\Qlik\\Sense\\Repository\\Extensions"
+  LocalExtensionPath:   "C:\\Users\\loris.lombardo\\Documents\\Qlik\\Sense\\Extensions"
 
   #"C:\\Users\\loris.lombardo\\Documents\\Qlik\\Sense\\Extensions"
 
