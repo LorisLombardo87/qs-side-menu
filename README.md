@@ -19,7 +19,7 @@ Mobile not supported!
 
 ## Installation
 
-1. Download the latest version from [here](https://github.com/LorisLombardo87/qs-side-menu/blob/master/build/qssidemenu_latest.zip?raw=true) 
+1. Download the latest version from [here](http://10.0.61.204/horsabi/qs-side-menu/raw/master/build/qssidemenu_dev.zip) 
 2. Qlik Sense Desktop
 	* To install, copy all files in the .zip file to folder "C:\Users\[%Username%]\Documents\Qlik\Sense\Extensions\QSSideMenu"
 3. Qlik Sense Server

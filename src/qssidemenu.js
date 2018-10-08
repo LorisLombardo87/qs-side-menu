@@ -67,14 +67,16 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                     console.log(model);
                     console.log( $scope.groups);
                     if($scope.groups.length==0){
+                        var filterIndex = 0;
                         var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                             if (currentMO.qData.visualization=="filterpane"){
                                 currentMO.childFilters=1;
 
                                 filtersTmp.push(currentMO);
                                 $scope.qlikApp.getObjectProperties(currentMO.qInfo.qId).then(function(model){
-                                    console.log(model.layout.qChildList.qItems.length);
+                                    //console.log(model.layout.qChildList.qItems.length);
                                     currentMO.childFilters=model.layout.qChildList.qItems.length;
+                                    $scope.filters[0].filterpane.childFilters=model.layout.qChildList.qItems.length;
                                 });
                                 
                                 return filtersTmp;
@@ -82,6 +84,7 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
                             else{
                                 return filtersTmp;
                             }
+                            filterIndex++;
                         },[]);
 
                         $scope.filters = [
@@ -97,15 +100,17 @@ function (qlik, $, /*_,*/ props, initProps, extensionUtils, cssContent, htmlTemp
 
                                 var filterpane = model.layout.qAppObjectList.qItems.reduce(function(filtersTmp,currentMO){
                                     if (currentMO.qData.visualization=="filterpane" && currentMO.qMeta.tags.indexOf(group.tag)>-1){
-                                        
+                                        var filterIndex = 0;
                                         currentMO.childFilters=1;
                                         $scope.qlikApp.getObjectProperties(currentMO.qInfo.qId).then(function(model){
-                                            console.log(model.layout.qChildList.qItems.length);
+                                            //console.log(model.layout.qChildList.qItems.length);
+                                            $scope.filters[0].filterpane.childFilters=model.layout.qChildList.qItems.length;
                                             currentMO.childFilters=model.layout.qChildList.qItems.length;
                                         });
 
                                         filtersTmp.push(currentMO);
                                         return filtersTmp;
+                                        filterIndex++;
                                     }
                                     else{
                                         return filtersTmp;

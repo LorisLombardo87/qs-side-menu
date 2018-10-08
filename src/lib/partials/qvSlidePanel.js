@@ -2,7 +2,8 @@
 define([
   'qvangular',
   'jquery',
-], function (qvangular,jquery) {
+  'qlik'
+], function (qvangular,jquery,qlik) {
   'use strict';
 
   qvangular.directive("qvSlidePanel", function() {
@@ -69,21 +70,39 @@ define([
           }           
         });
 
+var ok = true;
         scope.$watch('qsSideFilters', function(newValue, oldValue, scope){ 
-          jquery( ".filter-container" ).empty();          
+               
           var groups = newValue.map(function(group){
-            var filterpane =  group.filterpane.map(function(target){
-                console.log('target',target)
-              return '<div class = \"col-md-12 filter\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: '+(34*target.childFilters)+'px; width: 100%;background-color: white;border-radius: 2px;\"></div></div>'; });
-            return '<div class = \"col-md-12 \"><div class = "heading">'+group.heading+'</div></div>'+filterpane.join('');
-          });
-          jquery( ".filter-container" ).append(groups)
+            
+            ok = group.filterpane.reduce(function (oktmp,target) {
+              console.log(oktmp,target);
+              return oktmp && !isNaN(target.childFilters);
+            }, true);
 
-          jquery( ".qsSideFilterTarget" ).each(function(elem){
-            //console.log( $(this) );
-            scope.qlikApp.getObject( $(this), $(this).attr('qsfilterid') ).then(function (o) {});
-          })
-        })
+              console.log('ok',ok);
+            if(ok){
+              jquery( ".filter-container" ).empty();     
+              var filterpane =  group.filterpane.map(function(target){
+                  console.log('target',target);
+                  scope.qlikApp = qlik.currApp();
+                  
+
+                  var fheight = ((34+5)*target.childFilters);
+                  console.log(fheight);
+                return '<div class = \"col-md-12 filter\" style = \"height: '+(fheight)+'px;\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: '+(fheight)+'px; width: 100%;background-color: white;border-radius: 2px;\"></div></div>'; });
+              return '<div class = \"col-md-12 \"><div class = "heading">'+group.heading+'</div></div>'+filterpane.join('');
+            }
+          });
+          if(ok){
+            jquery( ".filter-container" ).append(groups)
+
+            jquery( ".qsSideFilterTarget" ).each(function(elem){
+              //console.log( $(this) );
+              scope.qlikApp.getObject( $(this), $(this).attr('qsfilterid') ).then(function (o) {});
+            })
+          }
+        },true)
       }
     }
   });
