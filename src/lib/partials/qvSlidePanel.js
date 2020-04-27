@@ -86,11 +86,16 @@ var ok = true;
               var filterpane =  group.filterpane.map(function(target){
                   console.log('target',target);
                   scope.qlikApp = qlik.currApp();
-                  
+                  if (target.childFilters == 1) {
+                    var fheight = 310; //the maximum height of filter that you want to make when there is rendering issue. Currently it is 310; i.e. 7*43. So it will occupy space of 7 filters. You can keep it as the (maximum filters in a single group)*43. In our case it was 7 filters.
+                  }
+                  else {
+                    var fheight = 43 * target.childFilters; //43 is the height of each filters.
+                  }
 
-                  var fheight = ((34+5)*target.childFilters);
+                  //var fheight = ((34+5)*target.childFilters);
                   console.log(fheight);
-                return '<div class = \"col-md-12 filter\" style = \"height: '+(fheight)+'px;\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: '+(fheight)+'px; width: 100%;background-color: white;border-radius: 2px;\"></div></div>'; });
+                return '<div class = \"col-md-12 filter\" style = \"height: '+(fheight)+'px;\"><div  qsfilterid = "'+target.qInfo.qId+'" class=\"qsSideFilterTarget \" style = \"height: '+(fheight)+'px; width: 100%;border-radius: 2px;\"></div></div>'; });
               return '<div class = \"col-md-12 \"><div class = "heading">'+group.heading+'</div></div>'+filterpane.join('');
             }
           });
