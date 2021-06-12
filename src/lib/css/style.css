@@ -29,22 +29,29 @@
       left: 0;
   }
   
+  .qv-collapsed-listbox{
+      background-color: rgb(255,255,255) !important;
+  }
+  
   .qs-side-bar .filter{
       margin-top: 5px;
       margin-bottom: 5px;
-      height:34px;
+      height: 34px;
   }
   
-  /*Very IMPORTANT*/
-  /*the below property is useful to restrict the background color of filters as white irrespective of the THEME of Qlik sense app.*/
-  .qv-collapsed-listbox{
-      background-color: rgb(255,255,255) !important; 
-  
-  }
   
   .qv-object .qv-inner-object{
-      height: 34px !important;
+      height: 100%;
   }
+  
+  .qsSideFilterTarget .qv-object-content-container{
+      background-color: #545352;
+  }
+  
+  .qsSideFilterTarget .ng-scope .qv-filterpane-expanded .qv-object-content-container{
+  	  background-color: rgb(255,255,255);
+  }
+  
   
   .heading{
   
@@ -53,6 +60,7 @@
       text-align: center;
       font-size: 18px;
       margin-top: 5px;
+	  font-weight: bold;
+	  text-decoration: underline;
   }
-  /* CSS */
   

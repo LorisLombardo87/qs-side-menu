@@ -1,0 +1,9 @@
+initialproperties.js;
+properties.js;
+qssidemenu.js;
+qssidemenu.qext;
+./lib/css/style.css;
+./lib/css/scoped-bootstrap.css;
+./lib/js/extensionUtils.js;
+./lib/partials/qvSlidePanel.js;
+./lib/partials/template.html;
